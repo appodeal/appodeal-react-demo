@@ -12,5 +12,7 @@
 @property (nonatomic, strong) AppodealNativeAd* ad;
 @property (nonatomic, strong) UIView* myView;
 @property (nonatomic) NSInteger adViewType;
+@property (nonatomic) CGFloat x;
+@property (nonatomic) CGFloat y;
 
 @end

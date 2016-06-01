@@ -38,10 +38,11 @@ RCT_EXPORT_MODULE();
   return adtype;
 }
 
-RCT_EXPORT_METHOD(loadNativeAd:(int)x y:(int)y adViewType:(NSString *)adViewType)
+RCT_EXPORT_METHOD(loadNativeAd:(CGFloat)x y:(CGFloat)y adViewType:(NSString *)adViewType)
 {
   self.adViewType = [self appodealAdViewTypeConvert:adViewType];
-
+  self.x = x;
+  self.y = y;
   dispatch_async(dispatch_get_main_queue(), ^{
     self.adService = [[AppodealNativeAdService alloc] init];
     self.adService.delegate = self;
@@ -54,7 +55,7 @@ RCT_EXPORT_METHOD(loadNativeAd:(int)x y:(int)y adViewType:(NSString *)adViewType
   //[self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
   dispatch_async(dispatch_get_main_queue(), ^{
     AppodealNativeAdView* adView = [AppodealNativeAdView nativeAdViewWithType:self.adViewType andNativeAd:self.ad andAttributes:self.attributes rootViewController:[[UIApplication sharedApplication] keyWindow].rootViewController];
-    [adView setFrame: CGRectMake(0, 0, self.attributes.width, self.attributes.heigth)];
+    [adView setFrame: CGRectMake(self.x, self.y, self.attributes.width, self.attributes.heigth)];
     self.myView = [[UIView alloc] init];
     [self.myView addSubview:adView];
     [self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
