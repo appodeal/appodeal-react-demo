@@ -61,6 +61,7 @@
 		328E25A21CFC230E00EF602B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25A01CFC230E00EF602B /* WebKit.framework */; };
 		328E25A41CFC231400EF602B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25A31CFC231400EF602B /* CoreBluetooth.framework */; };
 		328E25A71CFC235F00EF602B /* RectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 328E25A61CFC235F00EF602B /* RectPlugin.m */; };
+		32C4BDD31CFF116300FA6E4C /* AppodealNativeAdViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C4BDD21CFF116300FA6E4C /* AppodealNativeAdViewManager.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,8 @@
 		328E25A31CFC231400EF602B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		328E25A51CFC235F00EF602B /* ReactPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactPlugin.h; sourceTree = "<group>"; };
 		328E25A61CFC235F00EF602B /* RectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectPlugin.m; sourceTree = "<group>"; };
+		32C4BDD11CFF116300FA6E4C /* AppodealNativeAdViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppodealNativeAdViewManager.h; sourceTree = "<group>"; };
+		32C4BDD21CFF116300FA6E4C /* AppodealNativeAdViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppodealNativeAdViewManager.m; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -409,6 +412,8 @@
 			children = (
 				328E25A51CFC235F00EF602B /* ReactPlugin.h */,
 				328E25A61CFC235F00EF602B /* RectPlugin.m */,
+				32C4BDD11CFF116300FA6E4C /* AppodealNativeAdViewManager.h */,
+				32C4BDD21CFF116300FA6E4C /* AppodealNativeAdViewManager.m */,
 				328E25A31CFC231400EF602B /* CoreBluetooth.framework */,
 				328E259F1CFC230E00EF602B /* WebKit.framework */,
 				328E25A01CFC230E00EF602B /* WebKit.framework */,
@@ -703,6 +708,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C4BDD31CFF116300FA6E4C /* AppodealNativeAdViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				328E25A71CFC235F00EF602B /* RectPlugin.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
@@ -770,6 +776,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Appodeal",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -795,6 +802,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)/Appodeal",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
