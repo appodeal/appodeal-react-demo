@@ -721,6 +721,7 @@ class demog extends Component {
 
   pressButton8 () {
     NativeAdViewManagerPlugin.loadNativeAd(0,0, "AppodealNativeAdTypeContentStream");
+    NativeAdViewManagerPlugin.attachToView();
   }
 
   pressButton9() {

@@ -51,15 +51,23 @@ RCT_EXPORT_METHOD(loadNativeAd:(CGFloat)x y:(CGFloat)y adViewType:(NSString *)ad
 }
 
 - (void)nativeAdServiceDidLoad: (AppodealNativeAd*) nativeAd{
-  self.ad = nativeAd;
-  //[self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
+    self.ad = nativeAd;
+    //[self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.adView = [AppodealNativeAdView nativeAdViewWithType:self.adViewType andNativeAd:self.ad andAttributes:self.attributes rootViewController:[[UIApplication sharedApplication] keyWindow].rootViewController];
+        [self.adView setFrame: CGRectMake(self.x, self.y, self.attributes.width, self.attributes.heigth)];
+        self.myView = [[UIView alloc] init];
+        [self.myView addSubview:self.adView];
+        [self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
+    });
+}
+
+RCT_EXPORT_METHOD(attachToView)
+{
   dispatch_async(dispatch_get_main_queue(), ^{
-    AppodealNativeAdView* adView = [AppodealNativeAdView nativeAdViewWithType:self.adViewType andNativeAd:self.ad andAttributes:self.attributes rootViewController:[[UIApplication sharedApplication] keyWindow].rootViewController];
-    [adView setFrame: CGRectMake(self.x, self.y, self.attributes.width, self.attributes.heigth)];
-    self.myView = [[UIView alloc] init];
-    [self.myView addSubview:adView];
-    [self.bridge.eventDispatcher sendAppEventWithName:@"nativeAdServiceDidLoad" body:@{@"":@""}];
+    [self.ad attachToView:self.myView viewController:[[UIApplication sharedApplication] keyWindow].rootViewController];
   });
+  
 }
 
 - (void)nativeAdServiceDidFailedToLoad
