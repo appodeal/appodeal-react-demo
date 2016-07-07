@@ -227,12 +227,6 @@ NativeAppEventEmitter.addListener(
 
 
 //Callbacks for Natvive ad
-NativeAppEventEmitter.addListener(
-  'nativeAdServiceDidLoad',
-  (reminder) => {
-      console.log("nativeAdServiceDidLoad")
-  }
-);
 
 NativeAppEventEmitter.addListener(
   'nativeAdDidClick',
@@ -266,8 +260,17 @@ class demog extends Component {
       property1: 'NAME OF PROPERTY',
       showView: false
     };
+      
+      NativeAppEventEmitter.addListener(
+        'nativeAdServiceDidLoad',
+        (reminder) => {
+            this.pressButton9();
+        }
+    );
   }
 
+    
+    
 //Methods for AppodealPlugin
 /**
  * @method disableNetworkForAdType
@@ -674,11 +677,14 @@ class demog extends Component {
  * @param {JSON} json - see the json type of UIColor class in RCTConvert.h
  */
 
+ 
+    
   pressButton1 () {
     AppodealPlugin.disableNetworkForAdType("AppodealAdTypeAll","kAppodealAdMobNetworkName");
   }
 
   pressButton2 () {
+    AppodealPlugin.disableNetworkForAdType("AppodealAdTypeAll","kAppodealFacebookNetworkName");
     AppodealPlugin.initializeWithApiKey("dee74c5129f53fc629a44a690a02296694e3eef99f2d3a5f","AppodealAdTypeAll");
   }
 
@@ -725,6 +731,7 @@ class demog extends Component {
   }
 
   pressButton9() {
+    NativeAdViewManagerPlugin.attachToView();
     AppodealNativeAdView = requireNativeComponent('AppodealNativeAdView', null);
     this.setState({showView: true});
   }
@@ -752,19 +759,9 @@ class demog extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={() => this.pressButton1()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            DISABLE NETWORK
-          </Text>
-        </TouchableHighlight>
         <TouchableHighlight onPress={() => this.pressButton2()} style={styles.button} >
           <Text style={styles.buttonText}>
             INITIALIZE
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton3()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            DELEGATE
           </Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => this.pressButton4()} style={styles.button} >
@@ -782,34 +779,9 @@ class demog extends Component {
             SHOW VIDEO
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton7()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            SET WIDTH HEIGHT
-          </Text>
-        </TouchableHighlight>
         <TouchableHighlight onPress={() => this.pressButton8()} style={styles.button} >
           <Text style={styles.buttonText}>
-            LOAD NATIVE AD
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton9()} style={styles.button} >
-          <Text style={styles.buttonText}>
             SHOW NATIVE AD
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton10()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            isAutocacheEnabled
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton11()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            GET VERSION
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.pressButton12()} style={styles.button} >
-          <Text style={styles.buttonText}>
-            DEINITIALIZE
           </Text>
         </TouchableHighlight>
         {this.state.showView ? <AppodealNativeAdView style={{width: 320, height: 320, margin:10}} /> : null}
@@ -826,7 +798,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button:{
-    height:20,
+    height:40,
     borderColor: '#05A5D1',
     borderWidth:1,
     backgroundColor: '#3333',

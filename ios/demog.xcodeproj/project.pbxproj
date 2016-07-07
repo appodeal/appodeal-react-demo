@@ -35,7 +35,6 @@
 		328E256F1CFC22A900EF602B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E256D1CFC22A900EF602B /* EventKit.framework */; };
 		328E25701CFC22A900EF602B /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E256E1CFC22A900EF602B /* EventKitUI.framework */; };
 		328E25731CFC22B100EF602B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25711CFC22B100EF602B /* JavaScriptCore.framework */; };
-		328E25741CFC22B100EF602B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25721CFC22B100EF602B /* JavaScriptCore.framework */; };
 		328E25781CFC22BA00EF602B /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25751CFC22BA00EF602B /* libc++.1.tbd */; };
 		328E25791CFC22BA00EF602B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25761CFC22BA00EF602B /* libc++.tbd */; };
 		328E257A1CFC22BA00EF602B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25771CFC22BA00EF602B /* libc++abi.tbd */; };
@@ -58,7 +57,6 @@
 		328E259C1CFC230100EF602B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E259B1CFC230100EF602B /* Twitter.framework */; };
 		328E259E1CFC230700EF602B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E259D1CFC230700EF602B /* UIKit.framework */; };
 		328E25A11CFC230E00EF602B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E259F1CFC230E00EF602B /* WebKit.framework */; };
-		328E25A21CFC230E00EF602B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25A01CFC230E00EF602B /* WebKit.framework */; };
 		328E25A41CFC231400EF602B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328E25A31CFC231400EF602B /* CoreBluetooth.framework */; };
 		328E25A71CFC235F00EF602B /* RectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 328E25A61CFC235F00EF602B /* RectPlugin.m */; };
 		32C4BDD31CFF116300FA6E4C /* AppodealNativeAdViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C4BDD21CFF116300FA6E4C /* AppodealNativeAdViewManager.m */; };
@@ -179,7 +177,6 @@
 		328E256D1CFC22A900EF602B /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		328E256E1CFC22A900EF602B /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		328E25711CFC22B100EF602B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		328E25721CFC22B100EF602B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/PrivateFrameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		328E25751CFC22BA00EF602B /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
 		328E25761CFC22BA00EF602B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		328E25771CFC22BA00EF602B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
@@ -202,7 +199,6 @@
 		328E259B1CFC230100EF602B /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		328E259D1CFC230700EF602B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		328E259F1CFC230E00EF602B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		328E25A01CFC230E00EF602B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/PrivateFrameworks/WebKit.framework; sourceTree = SDKROOT; };
 		328E25A31CFC231400EF602B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		328E25A51CFC235F00EF602B /* ReactPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactPlugin.h; sourceTree = "<group>"; };
 		328E25A61CFC235F00EF602B /* RectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectPlugin.m; sourceTree = "<group>"; };
@@ -226,7 +222,6 @@
 			files = (
 				328E25A41CFC231400EF602B /* CoreBluetooth.framework in Frameworks */,
 				328E25A11CFC230E00EF602B /* WebKit.framework in Frameworks */,
-				328E25A21CFC230E00EF602B /* WebKit.framework in Frameworks */,
 				328E259E1CFC230700EF602B /* UIKit.framework in Frameworks */,
 				328E259C1CFC230100EF602B /* Twitter.framework in Frameworks */,
 				328E259A1CFC22FC00EF602B /* SystemConfiguration.framework in Frameworks */,
@@ -249,7 +244,6 @@
 				328E25791CFC22BA00EF602B /* libc++.tbd in Frameworks */,
 				328E257A1CFC22BA00EF602B /* libc++abi.tbd in Frameworks */,
 				328E25731CFC22B100EF602B /* JavaScriptCore.framework in Frameworks */,
-				328E25741CFC22B100EF602B /* JavaScriptCore.framework in Frameworks */,
 				328E256F1CFC22A900EF602B /* EventKit.framework in Frameworks */,
 				328E25701CFC22A900EF602B /* EventKitUI.framework in Frameworks */,
 				328E256C1CFC229E00EF602B /* CoreTelephony.framework in Frameworks */,
@@ -416,7 +410,6 @@
 				32C4BDD21CFF116300FA6E4C /* AppodealNativeAdViewManager.m */,
 				328E25A31CFC231400EF602B /* CoreBluetooth.framework */,
 				328E259F1CFC230E00EF602B /* WebKit.framework */,
-				328E25A01CFC230E00EF602B /* WebKit.framework */,
 				328E259D1CFC230700EF602B /* UIKit.framework */,
 				328E259B1CFC230100EF602B /* Twitter.framework */,
 				328E25991CFC22FC00EF602B /* SystemConfiguration.framework */,
@@ -439,7 +432,6 @@
 				328E25761CFC22BA00EF602B /* libc++.tbd */,
 				328E25771CFC22BA00EF602B /* libc++abi.tbd */,
 				328E25711CFC22B100EF602B /* JavaScriptCore.framework */,
-				328E25721CFC22B100EF602B /* JavaScriptCore.framework */,
 				328E256D1CFC22A900EF602B /* EventKit.framework */,
 				328E256E1CFC22A900EF602B /* EventKitUI.framework */,
 				328E256B1CFC229E00EF602B /* CoreTelephony.framework */,
@@ -772,6 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -798,6 +791,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
