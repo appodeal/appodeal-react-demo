@@ -91,6 +91,7 @@ class AppodealDemo extends Component {
 	  Appodeal.setOccupation(Appodeal.OCCUPATION_WORK);
 	  Appodeal.setRelation(Appodeal.RELATION_SINGLE);
 	  
+	  Appodeal.setLogLevel(Appodeal.LOG_LEVEL_VERBOSE);
 	  Appodeal.setAutoCache(this.getCurrentAdType(), this.state.autocache);
 	  Appodeal.initialize("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", this.getCurrentAdType());
   }
