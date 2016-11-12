@@ -97,6 +97,9 @@ android {
         }
 		multiDexEnabled true
     }
+	dexOptions {
+		javaMaxHeapSize "2g"
+	}
     splits {
         abi {
             reset()

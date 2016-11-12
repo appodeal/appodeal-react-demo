@@ -90,10 +90,21 @@ class AppodealDemo extends Component {
 	  Appodeal.setSmoking(Appodeal.SMOKING_NEGATIVE);
 	  Appodeal.setOccupation(Appodeal.OCCUPATION_WORK);
 	  Appodeal.setRelation(Appodeal.RELATION_SINGLE);
+	  Appodeal.setUserId("your_custom_user_id");
 	  
 	  Appodeal.setLogLevel(Appodeal.LOG_LEVEL_VERBOSE);
+	  Appodeal.setSmartBanners(false);
+	  Appodeal.setBannerAnimation(false);
+	  Appodeal.set728x90Banners(false);
+	  
 	  Appodeal.setAutoCache(this.getCurrentAdType(), this.state.autocache);
 	  Appodeal.initialize("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", this.getCurrentAdType());
+	  
+	  //Custom rules for segments
+	  Appodeal.setCustomStringRule("custom_string_rule", "value");
+	  Appodeal.setCustomBooleanRule("special_user", true);
+	  Appodeal.setCustomIntegerRule("age", 18);
+	  Appodeal.setCustomDoubleRule("hours_online", 1.5);
   }
   isLoadedClicked() {
 	  Appodeal.isLoaded(this.getCurrentAdType(), (isLoaded) => alert(isLoaded));
