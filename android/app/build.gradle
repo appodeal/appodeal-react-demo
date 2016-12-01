@@ -135,6 +135,7 @@ dependencies {
     compile "com.facebook.react:react-native:+"  // From node_modules
 	compile project(':react-native-appodeal')
 	compile project(':cheetah')
+	compile project(':facebook')
 	compile 'com.android.support:multidex:1.0.0'
 }
 

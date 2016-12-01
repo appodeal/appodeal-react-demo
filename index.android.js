@@ -42,11 +42,7 @@ class AppodealDemo extends Component {
 		  case 4:
 			return Appodeal.BANNER_BOTTOM;
 		  case 5:
-			return Appodeal.SKIPPABLE_VIDEO;
-		  case 6:
 			return Appodeal.REWARDED_VIDEO;
-		  case 7:
-			return Appodeal.INTERSTITIAL | Appodeal.SKIPPABLE_VIDEO;
 	  }
   }
   initializeClicked() {
@@ -56,19 +52,13 @@ class AppodealDemo extends Component {
 	  DeviceEventEmitter.addListener('onInterstitialClosed', (e) => Appodeal.showToast("Interstitial closed", Appodeal.SHORT));
 	  DeviceEventEmitter.addListener('onInterstitialFailedToLoad', (e) => Appodeal.showToast("Interstitial failed to load", Appodeal.SHORT));
 	  DeviceEventEmitter.addListener('onInterstitialShown', (e) => Appodeal.showToast("Interstitial shown", Appodeal.SHORT));
+	  DeviceEventEmitter.addListener('onInterstitialFinished', (e) => Appodeal.showToast("Interstitial finished", Appodeal.SHORT));
 	  
 	  //Banner callbacks
 	  DeviceEventEmitter.addListener('onBannerClicked', (e) => Appodeal.showToast("Banner clicked", Appodeal.SHORT));
 	  DeviceEventEmitter.addListener('onBannerFailedToLoad', (e) => Appodeal.showToast("Banner failed to load", Appodeal.SHORT));
 	  DeviceEventEmitter.addListener('onBannerLoaded', (e) => Appodeal.showToast("Banner loaded. Height: " + e.height + ", precache: " + e.isPrecache, Appodeal.SHORT));
 	  DeviceEventEmitter.addListener('onBannerShown', (e) => Appodeal.showToast("Banner shown", Appodeal.SHORT));
-	  
-	  //Skippable video callbacks
-	  DeviceEventEmitter.addListener('onSkippableVideoClosed', (e) => Appodeal.showToast("Skippable video closed: " + e.isFinished, Appodeal.SHORT));
-	  DeviceEventEmitter.addListener('onSkippableVideoFailedToLoad', (e) => Appodeal.showToast("Skippable video failed to load", Appodeal.SHORT));
-	  DeviceEventEmitter.addListener('onSkippableVideoFinished', (e) => Appodeal.showToast("Skippable video finished", Appodeal.SHORT));
-	  DeviceEventEmitter.addListener('onSkippableVideoLoaded', (e) => Appodeal.showToast("Skippable video loaded", Appodeal.SHORT));
-	  DeviceEventEmitter.addListener('onSkippableVideoShown', (e) => Appodeal.showToast("Skippable video shown", Appodeal.SHORT));
 	  
 	  //Rewarded video callbacks
 	  DeviceEventEmitter.addListener('onRewardedVideoClosed', (e) => Appodeal.showToast("Rewarded video closed: " + e.isFinished, Appodeal.SHORT));
@@ -127,9 +117,7 @@ class AppodealDemo extends Component {
         { key: index++, label: 'Banner' },
 		{ key: index++, label: 'Banner top' },
 		{ key: index++, label: 'Banner bottom' },
-        { key: index++, label: 'Skippable Video' },
-        { key: index++, label: 'Rewarded Video' },
-        { key: index++, label: 'Interstitial or Video' }
+        { key: index++, label: 'Rewarded Video' }
     ];
     return (
       <View style={styles.container}>

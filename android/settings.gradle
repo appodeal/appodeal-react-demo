@@ -1,5 +1,6 @@
 rootProject.name = 'AppodealDemo'
 
-include ':app', ':react-native-appodeal', ':cheetah'
+include ':app', ':react-native-appodeal', ':cheetah', ':facebook'
 project(':react-native-appodeal').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-appodeal/android')
-project(':cheetah').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-appodeal/android/cheetah-3.4.7')
+project(':cheetah').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-appodeal/android/cheetah-mobile-3.5')
+project(':facebook').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-appodeal/android/facebook-audience-network-4.17')
