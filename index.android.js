@@ -23,11 +23,28 @@ class AppodealDemo extends Component {
 	  super(props);
 	  
 	  this.state = {
+		    logging: false,
+			testing: false,
+			confirmType: false,
             autocache: false,
+			disableSmartBanners: false,
+			disableBannerAnimation: false,
+			disable728x90Banners: false,
+			enableTriggerOnLoadedTwice: false,
+			disableLocationPermissionCheck: false,
+			disableWriteExternalStorageCheck: false,
 			adType: 0,
         };
-	
+	this.loggingChanged = this.loggingChanged.bind(this);
+	this.testingChanged = this.testingChanged.bind(this);
+	this.confirmTypeChanged = this.confirmTypeChanged.bind(this);
 	this.autocacheChanged = this.autocacheChanged.bind(this);
+	this.disableSmartBannersChanged = this.disableSmartBannersChanged.bind(this);
+	this.disableBannerAnimationChanged = this.disableBannerAnimationChanged.bind(this);
+	this.disable728x90BannersChanged = this.disable728x90BannersChanged.bind(this);
+	this.enableTriggerOnLoadedTwiceChanged = this.enableTriggerOnLoadedTwiceChanged.bind(this);
+	this.disableLocationPermissionCheckChanged = this.disableLocationPermissionCheckChanged.bind(this);
+	this.disableWriteExternalStorageCheckChanged = this.disableWriteExternalStorageCheckChanged.bind(this);
   }
   getCurrentAdType() {
 	  switch(this.state.adType){
@@ -80,6 +97,17 @@ class AppodealDemo extends Component {
 	  //DeviceEventEmitter.addListener('accessCoarseLocationResponse', (e) => Appodeal.showToast("Coarse location: " + e.isGranted, Appodeal.SHORT));
 	  //DeviceEventEmitter.addListener('writeExternalStorageResponse', (e) => Appodeal.showToast("External storage: " + e.isGranted, Appodeal.SHORT));
 	  Appodeal.requestAndroidMPermissions();
+	  
+	  if(this.state.logging)
+		Appodeal.setLogLevel(Appodeal.LOG_LEVEL_VERBOSE);
+	  else
+		Appodeal.setLogLevel(Appodeal.LOG_LEVEL_NONE);
+	  Appodeal.setTesting(this.state.testing);
+	  if(this.state.confirmType) Appodeal.confirm(this.getCurrentAdType());
+	  if(this.state.disableLocationPermissionCheck)
+		  Appodeal.disableLocationPermissionCheck();
+	  if(this.state.disableWriteExternalStorageCheck)
+		  Appodeal.disableWriteExternalStoragePermissionCheck();
 	
 	  //Set user settings
 	  Appodeal.setAge(42);
@@ -92,11 +120,11 @@ class AppodealDemo extends Component {
 	  Appodeal.setRelation(Appodeal.RELATION_SINGLE);
 	  Appodeal.setUserId("your_custom_user_id");
 	  
-	  Appodeal.setLogLevel(Appodeal.LOG_LEVEL_VERBOSE);
-	  Appodeal.setSmartBanners(false);
-	  Appodeal.setBannerAnimation(false);
-	  Appodeal.set728x90Banners(false);
+	  Appodeal.setSmartBanners(!this.state.disableSmartBanners);
+	  Appodeal.setBannerAnimation(!this.state.disableBannerAnimation);
+	  Appodeal.set728x90Banners(!this.state.disable728x90Banners);
 	  
+	  Appodeal.setOnLoadedTriggerBoth(this.getCurrentAdType(), this.state.enableTriggerOnLoadedTwice);
 	  Appodeal.setAutoCache(this.getCurrentAdType(), this.state.autocache);
 	  Appodeal.initialize("fee50c333ff3825fd6ad6d38cff78154de3025546d47a84f", this.getCurrentAdType());
 	  
@@ -109,11 +137,61 @@ class AppodealDemo extends Component {
   isLoadedClicked() {
 	  Appodeal.isLoaded(this.getCurrentAdType(), (isLoaded) => alert(isLoaded));
   }
+  isPrecacheClicked(){
+	  Appodeal.isPrecache(this.getCurrentAdType(), (isPrecache) => alert(isPrecache));
+  }
+  
+  loggingChanged() {
+	this.setState({
+            logging: !this.state.logging
+        });
+  }
+  testingChanged() {
+	this.setState({
+            testing: !this.state.testing
+        });
+  }
+  confirmTypeChanged() {
+	this.setState({
+            confirmType: !this.state.confirmType
+        });
+  }
   autocacheChanged() {
 	this.setState({
             autocache: !this.state.autocache
         });
   }
+  disableSmartBannersChanged() {
+	this.setState({
+            disableSmartBanners: !this.state.disableSmartBanners
+        });
+  }
+  disableBannerAnimationChanged() {
+	this.setState({
+            disableBannerAnimation: !this.state.disableBannerAnimation
+        });
+  }
+  disable728x90BannersChanged() {
+	this.setState({
+            disable728x90Banners: !this.state.disable728x90Banners
+        });
+  }
+  enableTriggerOnLoadedTwiceChanged() {
+	this.setState({
+            enableTriggerOnLoadedTwice: !this.state.enableTriggerOnLoadedTwice
+        });
+  }
+  disableLocationPermissionCheckChanged() {
+	this.setState({
+            disableLocationPermissionCheck: !this.state.disableLocationPermissionCheck
+        });
+  }
+  disableWriteExternalStorageCheckChanged() {
+	this.setState({
+            disableWriteExternalStorageCheck: !this.state.disableWriteExternalStorageCheck
+        });
+  }
+  
   adTypeChanged(newAdType){
 	  this.setState({
 		  adType: newAdType
@@ -133,64 +211,185 @@ class AppodealDemo extends Component {
     ];
     return (
       <View style={styles.container}>
-        
-		<ModalPicker
-					style={{width: 200}}
-                    data={data}
-                    initValue="AdType"
-                    onChange={(option)=>{ this.adTypeChanged(option.key) }} />
-		
-		<View style={{width: 200}}>
+        <View style={{flex: 0.35, flexDirection: "column", alignItems: 'center'}}>
+			<ModalPicker
+						style={{height: 40}}
+						selectTextStyle={{color: "#fff"}}
+						data={data}
+						initValue="AdType"
+						onChange={(option)=>{ this.adTypeChanged(option.key) }} />	
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => this.initializeClicked()}>
+					Initialize
+			</Button>
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => Appodeal.cache(this.getCurrentAdType())}>
+					Cache
+			</Button>
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => this.isLoadedClicked()}>
+					Is Loaded?
+			</Button>
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => this.isPrecacheClicked()}>
+					Is Precache?
+			</Button>
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => Appodeal.show({
+					adType: this.getCurrentAdType(),
+					placement: "initial_screen" //optional 
+					}, null)}>
+					Show
+			</Button>
+			
+			<Button
+				style={styles.button}
+				styleDisabled={styles.disabledButton}
+				onPress={() => Appodeal.hide(this.getCurrentAdType())}>
+					Hide
+			</Button>
+		</View>
+		<View style={{flex: 0.65, flexDirection: "column"}}>
+			<View style={{flexDirection: "row"}}>
+				<CheckboxField
+					label={'Logging'}
+					checked={this.state.logging}
+					onSelect={this.loggingChanged}
+					selected={this.state.logging}
+					checkboxStyle={styles.checkboxStyle}
+					labelStyle={styles.labelStyle}
+					containerStyle={styles.containerStyle}
+					selectedColor="#ef3326"
+					labelSide="right">
+						<Text style={{ color: '#fff' }}>Y</Text>
+				</CheckboxField>
+				<CheckboxField
+					label={'Testing'}
+					checked={this.state.testing}
+					onSelect={this.testingChanged}
+					selected={this.state.testing}
+					checkboxStyle={styles.checkboxStyle}
+					labelStyle={styles.labelStyle}
+					containerStyle={styles.containerStyle}
+					selectedColor="#ef3326"
+					labelSide="right">
+						<Text style={{ color: '#fff' }}>Y</Text>
+				</CheckboxField>
+			</View>
+			<View style={{flexDirection: "row"}}>
+				<CheckboxField
+					label={'Confirm'}
+					checked={this.state.confirmType}
+					onSelect={this.confirmTypeChanged}
+					selected={this.state.confirmType}
+					checkboxStyle={styles.checkboxStyle}
+					labelStyle={styles.labelStyle}
+					containerStyle={styles.containerStyle}
+					selectedColor="#ef3326"
+					labelSide="right">
+						<Text style={{ color: '#fff' }}>Y</Text>
+				</CheckboxField>
+				<CheckboxField
+					label={'AutoCache'}
+					checked={this.state.autocache}
+					onSelect={this.autocacheChanged}
+					selected={this.state.autocache}
+					checkboxStyle={styles.checkboxStyle}
+					labelStyle={styles.labelStyle}
+					containerStyle={styles.containerStyle}
+					selectedColor="#ef3326"
+					labelSide="right">
+						<Text style={{ color: '#fff' }}>Y</Text>
+				</CheckboxField>
+			</View>
 			<CheckboxField
-			  label={'Autocache'}
-			  checked={this.state.autocache}
-			  onSelect={this.autocacheChanged}
-			  selected={this.state.autocache}
-			  checkboxStyle={styles.checkboxStyle}
-			  labelStyle={styles.labelStyle}
-			  selectedColor="#ef3326"
-			  labelSide="right">
-				<Text style={{ color: '#fff' }}>Y</Text>
+				label={'Disable Smart Banners'}
+				checked={this.state.disableSmartBanners}
+				onSelect={this.disableSmartBannersChanged}
+				selected={this.state.disableSmartBanners}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
+			</CheckboxField>
+			<CheckboxField
+				label={'Disable Banner Animation'}
+				checked={this.state.disableBannerAnimation}
+				onSelect={this.disableBannerAnimationChanged}
+				selected={this.state.disableBannerAnimation}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
+			</CheckboxField>
+			<CheckboxField
+				label={'Disable 728x90 Banners'}
+				checked={this.state.disable728x90Banners}
+				onSelect={this.disable728x90BannersChanged}
+				selected={this.state.disable728x90Banners}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
+			</CheckboxField>
+			<CheckboxField
+				label={'Enable Trigger onLoaded on precache'}
+				checked={this.state.enableTriggerOnLoadedTwice}
+				onSelect={this.enableTriggerOnLoadedTwiceChanged}
+				selected={this.state.enableTriggerOnLoadedTwice}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
+			</CheckboxField>
+			<CheckboxField
+				label={'Disable Location Permission Check'}
+				checked={this.state.disableLocationPermissionCheck}
+				onSelect={this.disableLocationPermissionCheckChanged}
+				selected={this.state.disableLocationPermissionCheck}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
+			</CheckboxField>
+			<CheckboxField
+				label={'Disable Write External Storage Check'}
+				checked={this.state.disableWriteExternalStorageCheck}
+				onSelect={this.disableWriteExternalStorageCheckChanged}
+				selected={this.state.disableWriteExternalStorageCheck}
+				checkboxStyle={styles.checkboxStyle}
+				labelStyle={styles.labelStyle}
+				containerStyle={styles.containerStyle}
+				selectedColor="#ef3326"
+				labelSide="right">
+					<Text style={{ color: '#fff' }}>Y</Text>
 			</CheckboxField>
 		</View>
-		
-		<Button
-			style={styles.button}
-			styleDisabled={styles.disabledButton}
-			onPress={() => this.initializeClicked()}>
-				Initialize
-		</Button>
-		
-		<Button
-			style={styles.button}
-			styleDisabled={styles.disabledButton}
-			onPress={() => Appodeal.cache(this.getCurrentAdType())}>
-				Cache
-		</Button>
-		
-		<Button
-			style={styles.button}
-			styleDisabled={styles.disabledButton}
-			onPress={() => this.isLoadedClicked()}>
-				Is loaded
-		</Button>
-		
-		<Button
-			style={styles.button}
-			styleDisabled={styles.disabledButton}
-			onPress={() => Appodeal.show({
-				adType: this.getCurrentAdType(),
-				placement: "initial_screen" //optional 
-				}, null)}>
-				Show
-		</Button>
-		
-		<Button
-			style={styles.button}
-			styleDisabled={styles.disabledButton}
-			onPress={() => Appodeal.hide(this.getCurrentAdType())}>
-				Hide
-		</Button>
 		
       </View>
     );
@@ -200,6 +399,7 @@ class AppodealDemo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+	flexDirection: "row",
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ef3326',
@@ -208,10 +408,10 @@ const styles = StyleSheet.create({
 	marginTop: 8,
 	backgroundColor: "#fff",
     borderRadius: 5,
-	padding: 10,
+	padding: 5,
 	alignItems: 'center',
 	color: '#ef3326',
-	width: 200
+	width: 190
   },
   disabledButton: {
 	backgroundColor: "#aaa",
@@ -225,9 +425,17 @@ const styles = StyleSheet.create({
       borderRadius: 5
   },
   labelStyle: {
-      flex: 1,
-	  color: "#fff"
+      //flex: 1,
+	  marginLeft: 5,
+	  color: "#fff",
   },
+  containerStyle: {
+        //flex: 1,
+		flexDirection: "row",
+        alignItems: 'center',
+		marginLeft: 5,
+		marginTop: 5
+    },
 });
 
 AppRegistry.registerComponent('AppodealDemo', () => AppodealDemo);
